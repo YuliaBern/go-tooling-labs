@@ -1,24 +1,13 @@
 package main
 
 import (
-	"os"
-
-	"github.com/rs/zerolog"
+	"fmt"
 	"github.com/YuliaBern/lab1-tooling/internal"
 )
 
 func main() {
-	logger := zerolog.New(os.Stdout).With().Timestamp().Logger()
+	sum := internal.Add(5, 3)
 
-	config, err := internal.LoadConfig()
+	fmt.Println("Sum:", sum)
 
-	if err != nil {
-		logger.Error().Err(err).Msg("config error")
-		return
-	}
-
-	logger.Info().
-		Str("app", config.AppName).
-		Int("port", config.Port).
-		Msg("application started")
 }

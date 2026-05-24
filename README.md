@@ -4,20 +4,3 @@
 
 ```bash
 go run ./cmd/app
-```
-
-## Run tests
-
-```bash
-make test
-```
-
-## Run lint
-
-```bash
-make lint
-```
-
-## Author
-
-Student project - Yulia Bernatska

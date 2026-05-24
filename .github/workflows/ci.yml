@@ -28,11 +28,11 @@ jobs:
       - name: Install dependencies
         run: go mod tidy
 
+      - name: Install golangci-lint
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.57.2
+
       - name: Run lint
-        uses: golangci/golangci-lint-action@v6
-        with:
-          version: v1.57.2
-          args: --timeout=5m
+        run: golangci-lint run --timeout=5m
 
       - name: Run tests
         run: make test

@@ -1,17 +1,24 @@
 package main
 
 import (
-	"fmt"
+	"os"
+
+	"github.com/rs/zerolog"
 	"github.com/YuliaBern/lab1-tooling/internal"
 )
 
 func main() {
-	sum := internal.Add(5, 3)
+	logger := zerolog.New(os.Stdout).With().Timestamp().Logger()
 
-	fmt.Println("Sum:", sum)
+	config, err := internal.LoadConfig()
 
-	_, err := fmt.Printf("Hello, World from lab1!\n")
 	if err != nil {
-		fmt.Println("Помилка друку:", err)
+		logger.Error().Err(err).Msg("config error")
+		return
 	}
+
+	logger.Info().
+		Str("app", config.AppName).
+		Int("port", config.Port).
+		Msg("application started")
 }
